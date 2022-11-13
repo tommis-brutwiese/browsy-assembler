@@ -2,6 +2,10 @@
 
 Play with assembler in your browser via wasm
 
+## Status
+
+Currently concept only, no implementation yet.
+
 ## App-description
 
 Webapp with following components:
