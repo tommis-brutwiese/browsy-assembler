@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>browser-assembler</title>
+  <style>
+  .inactive {
+        display: none;
+  }
+  .flexcontainer {
+        display: flex;
+  }
+  .flexcol {
+        flex-direction: column;
+        padding: 5px;
+  }
+  .flexrow {
+        flex-direction: row;
+        padding: 5px;
+  }
+  .flexitem {
+        padding: 1em;
+  }
+  </style>
+</head>
+<body>
+  <script type="module">
+      import init, {greet, do_log} from "./pkg/hello_wasm.js";
+      init()
+        .then(() => {
+          do_log("initialisation actions");
+        });
+
+      /* Could also create this onclick from rust */
+      /*
+      have logical functions
+      bind functions to web
+      */
+      const but_code = document.getElementById("but_code");
+      but_code.onclick = function() { do_log("but_code") };
+  </script>
+  <h1>Browsy assembler</h1><!-- Ziele:
+          * click on button "s"
+          * set string inside div "s"
+          * only information inside html necessary for display & function calls (no data, apart from initial data
+  -->
+  <div class="flexcontainer flexrow">
+    <div class="flexcontainer flexcol">
+      <!-- attempt to keep it slightly simple for now, do not overthink it -->
+      <section class="flexitem">
+        <!-- Load, Save, Step -->
+        <h2>Controls</h2><button type="button">set string (via
+        wasm)</button> <button type="button">set int (via
+        wasm)</button> <button id="but_code" type="button">insert
+        code</button>
+      </section>
+    </div>
+    <div class="flexcontainer flexcol">
+      <section class="flexitem">
+        <!-- Actual assembler code, and current position of program -->
+        <h2>Code</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>line-id</th>
+              <th>command</th>
+            </tr>
+          </thead>
+          <tbody>
+         </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+  <div class="inactive">
+    <section>
+      <!-- Processor registers -->
+      <h2>Registers</h2>
+    </section>
+    <section>
+      <!-- Stack and Heap view - possibly split -->
+      <h2>Memory</h2>
+    </section>
+    <section>
+      <!-- Information about System (Processor type / IO / others) -->
+      <h2>System</h2>
+    </section>
+  </div>
+</body>
+</html>
